@@ -24,14 +24,24 @@ public class PostController {
         return RandomStringUtils.random(20, true, false) + "_" + name;
     }
 
-    @PostMapping("json")
+    @PostMapping("respIsJson")
     @ResponseBody
-    public ObjectNode returnStr(@RequestParam String name, @RequestParam(required = false) String str) {
+    public ObjectNode respIsJson(@RequestParam String name, @RequestParam(required = false) String str) {
         return objectMapper
                 .createObjectNode()
                 .put("name", name)
                 .put("str", str)
                 .put("random", RandomStringUtils.random(10, true, false))
+                ;
+    }
+
+    @PostMapping("reqIsJson")
+    @ResponseBody
+    public ObjectNode reqIsJson(@RequestBody ObjectNode req) {
+        return objectMapper
+                .createObjectNode()
+                .put("random", RandomStringUtils.random(10, true, false))
+                .set("req", req)
                 ;
     }
 
