@@ -2,6 +2,8 @@ package org.adp.apitest.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import lombok.extern.slf4j.Slf4j;
+import org.adp.apitest.utils.RequestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("post")
+@Slf4j
 public class PostController {
 
     @Resource
@@ -22,12 +25,14 @@ public class PostController {
     @PostMapping("withQuery")
     @ResponseBody
     public String returnStr(@RequestParam String name) {
+        log.info("calling {}", RequestUtils.getUrl());
         return RandomStringUtils.random(20, true, false) + "_" + name;
     }
 
     @PostMapping("respIsJson")
     @ResponseBody
     public ObjectNode respIsJson(@RequestParam String name, @RequestParam(required = false) String str) {
+        log.info("calling {}", RequestUtils.getUrl());
         return objectMapper
                 .createObjectNode()
                 .put("name", name)
