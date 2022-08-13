@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 
@@ -42,6 +43,18 @@ public class PostController {
                 .createObjectNode()
                 .put("random", RandomStringUtils.random(10, true, false))
                 .set("req", req)
+                ;
+    }
+
+    @PostMapping("file")
+    @ResponseBody
+    public ObjectNode reqIsJson(@RequestParam(value = "file") MultipartFile file) {
+        return objectMapper
+                .createObjectNode()
+                .put("fileName", file.getName())
+                .put("originFileName", file.getOriginalFilename())
+                .put("contentType", file.getContentType())
+                .put("size", file.getSize())
                 ;
     }
 
