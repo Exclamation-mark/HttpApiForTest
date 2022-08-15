@@ -56,6 +56,7 @@ public class PostController {
     public ObjectNode reqIsJson(@RequestParam(value = "file") MultipartFile file) {
         return objectMapper
                 .createObjectNode()
+                .put("fileId", RandomStringUtils.random(10, true, false))
                 .put("fileName", file.getName())
                 .put("originFileName", file.getOriginalFilename())
                 .put("contentType", file.getContentType())
