@@ -54,6 +54,7 @@ public class PostController {
     @PostMapping("file")
     @ResponseBody
     public ObjectNode reqIsJson(@RequestParam(value = "file") MultipartFile file) {
+        log.info("calling {}", RequestUtils.getUrl());
         return objectMapper
                 .createObjectNode()
                 .put("fileName", file.getName())
