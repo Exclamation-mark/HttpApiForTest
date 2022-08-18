@@ -62,7 +62,7 @@ public class PostController {
                 .createObjectNode()
                 .put("fileId", RandomStringUtils.random(10, true, false))
                 .put("fileName", file.getName())
-                .put(name, name)
+                .put("name", name)
                 .put("originFileName", file.getOriginalFilename())
                 .put("contentType", file.getContentType())
                 .put("size", file.getSize())
