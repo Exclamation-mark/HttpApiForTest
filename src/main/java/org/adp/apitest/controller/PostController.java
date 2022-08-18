@@ -57,6 +57,7 @@ public class PostController {
             @RequestParam(value = "file") MultipartFile file,
             @RequestParam String name
     ) {
+        log.info("calling {}", RequestUtils.getUrl());
         return objectMapper
                 .createObjectNode()
                 .put("fileId", RandomStringUtils.random(10, true, false))
