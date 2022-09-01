@@ -11,7 +11,7 @@ public class RequestUtils {
 
     public static String getUrl() {
         final RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-        if (requestAttributes != null) {
+        if (requestAttributes instanceof ServletRequestAttributes) {
             return ((ServletRequestAttributes) requestAttributes).getRequest().getRequestURI();
         }
         return "";
