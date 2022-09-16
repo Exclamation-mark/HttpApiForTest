@@ -44,10 +44,23 @@ public class PostController {
     @PostMapping("reqIsJson")
     @ResponseBody
     public ObjectNode reqIsJson(@RequestBody ObjectNode req) {
+        log.info("calling {}", RequestUtils.getUrl());
         return objectMapper
                 .createObjectNode()
                 .put("random", RandomStringUtils.random(10, true, false))
                 .set("req", req)
+                ;
+    }
+
+    @PostMapping("form")
+    @ResponseBody
+    public ObjectNode form(@RequestPart String name, @RequestPart String o) {
+        log.info("calling {}", RequestUtils.getUrl());
+        return objectMapper
+                .createObjectNode()
+                .put("random", RandomStringUtils.random(10, true, false))
+                .put("name", name)
+                .put("o", o)
                 ;
     }
 
